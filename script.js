@@ -2,19 +2,22 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Sync Pricing Cards with Contact Select
-  const pricingButtons = document.querySelectorAll('.pricing-card .btn');
+  const pricingButtons = document.querySelectorAll('.pricing-box .btn, .pricing-card .btn');
   const packageSelect = document.getElementById('tier-select');
 
   pricingButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      const card = btn.closest('.pricing-card');
-      const title = card.querySelector('.tier-title').innerText.toLowerCase();
+      const card = btn.closest('.pricing-box') || btn.closest('.pricing-card');
+      if (!card) return;
+      const titleEl = card.querySelector('.tier-name') || card.querySelector('.tier-title');
+      if (!titleEl) return;
+      const title = titleEl.innerText.toLowerCase();
 
-      if (title.includes('hero')) {
+      if (title.includes('hero') || title.includes('header')) {
         packageSelect.value = 'hero';
       } else if (title.includes('complete 1-page') || title.includes('website')) {
         packageSelect.value = 'complete';
-      } else if (title.includes('hosting') || title.includes('launch')) {
+      } else if (title.includes('hosting') || title.includes('launch') || title.includes('multi-page')) {
         packageSelect.value = 'launch';
       }
     });
