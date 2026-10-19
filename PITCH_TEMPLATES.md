@@ -58,8 +58,8 @@ Most beginners on Upwork fail because they bid on $1,000 projects against freela
 > To be completely upfront: I am actively building my client reviews on Upwork, which is why my rate is at an introductory discount ($[bid amount]). In exchange, I just ask for an honest 5-star review if you're thrilled with the speed and quality.
 >
 > You can test my clean code and live UI components directly on my portfolio here:
-> [Your Portfolio Link]
->
+> https://yashh127.github.io/landing-page-portfolio/
+
 > I’m available to start immediately tonight. What’s the link to your file or current site?
 >
 > Best,  
@@ -81,12 +81,12 @@ Busy web designers and developers charging $3,000+ per site often get inquiries 
 >
 > I’m a frontend developer and designer looking to take small builds, mobile responsiveness fixes, or landing page overflow off your plate for a flat split (or referral fee).
 >
-> Here are a few live components I built: [Link to your portfolio].
+> Here are a few live components I built: https://yashh127.github.io/landing-page-portfolio/
 >
 > If you ever have smaller leads you'd otherwise reject, feel free to pass them my way!
 >
 > Best,  
-> [Your Name]"
+> Yash Panjwani"
 
 ---
 
