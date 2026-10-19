@@ -9,6 +9,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    try {
+      const stored = localStorage.getItem("color-scheme");
+      if (stored) {
+        document.querySelector('meta[name="color-scheme"]').content = stored;
+        document.documentElement.setAttribute('data-theme', stored);
+      }
+    } catch (e) {}
+  </script>
 </head>
 <body>
 
@@ -35,6 +45,10 @@
         <a href="#faq">FAQ</a>
       </nav>
       <div class="nav-actions">
+        <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Toggle color theme" title="Toggle dark/light mode">
+          <span class="icon-sun">☀️</span>
+          <span class="icon-moon">🌙</span>
+        </button>
         <a href="#contact" class="btn btn-primary btn-sm">Get in Touch</a>
       </div>
     </div>

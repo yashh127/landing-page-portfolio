@@ -1,6 +1,9 @@
 // Interactive functionality for Solo Studio Landing Page
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Theme Toggle Initialization
+  initThemeToggle();
+
   // 1. Sync Pricing Cards with Contact Select
   const pricingButtons = document.querySelectorAll('.pricing-box .btn, .pricing-card .btn');
   const packageSelect = document.getElementById('tier-select');
@@ -23,6 +26,52 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// Theme Toggle Functionality
+function initThemeToggle() {
+  const toggleBtn = document.getElementById('theme-toggle');
+  if (!toggleBtn) return;
+
+  function getActiveTheme() {
+    const meta = document.querySelector('meta[name="color-scheme"]');
+    if (meta && (meta.content === 'dark' || meta.content === 'light')) {
+      return meta.content;
+    }
+    const htmlTheme = document.documentElement.getAttribute('data-theme');
+    if (htmlTheme) return htmlTheme;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    const current = getActiveTheme();
+    const next = current === 'dark' ? 'light' : 'dark';
+    const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const meta = document.querySelector('meta[name="color-scheme"]');
+
+    if (next === systemPref) {
+      localStorage.removeItem('color-scheme');
+      if (meta) meta.content = 'light dark';
+      document.documentElement.removeAttribute('data-theme');
+    } else {
+      localStorage.setItem('color-scheme', next);
+      if (meta) meta.content = next;
+      document.documentElement.setAttribute('data-theme', next);
+    }
+  });
+
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'color-scheme') {
+      const meta = document.querySelector('meta[name="color-scheme"]');
+      if (e.newValue) {
+        if (meta) meta.content = e.newValue;
+        document.documentElement.setAttribute('data-theme', e.newValue);
+      } else {
+        if (meta) meta.content = 'light dark';
+        document.documentElement.removeAttribute('data-theme');
+      }
+    }
+  });
+}
 
 // 2. Interactive Demo: Team Pricing Calculator
 function updatePricingDemo(val) {
